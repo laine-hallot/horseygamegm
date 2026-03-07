@@ -672,7 +672,7 @@ function buildCrisprTab() {
       <div style="color:#7dd3fc;font-weight:bold;margin-bottom:12px;font-size:13px;letter-spacing:.05em">EDIT GUIDE — ${name}</div>
       <div class="crispr-info">
         In-game: go to <b style="color:var(--accent)">Helix ${loc?loc.h:'?'}</b>, count to
-        <b style="color:var(--accent)">position ${loc?loc.pos:'?'}</b> from the top (position 0 = top).
+        <b style="color:var(--accent)">position ${loc?loc.pos:'?'}</b> from the bottom (position 0 = bottom).
         The base there controls this gene. Same position on both strands.
       </div>
       <div class="swap-grid">
@@ -704,6 +704,20 @@ function parseGenome(text) {
   const lines = text.trim().split('\n').map(l=>l.trim()).filter(Boolean);
   let cur = -1;
   for (const line of lines) {
+    // new game format: "00:ACCTCAGGTT" (index:number followed by sequence)
+    const nm = line.match(/^(\d{1,2})\s*:\s*([atcg]+)$/i);
+    if (nm) {
+      const idx = parseInt(nm[1], 10);
+      if (idx >= 0 && idx < 20) {
+        const seq = nm[2].toUpperCase();
+        // fill first empty strand, then second
+        if (!helices[idx][0]) helices[idx][0] = seq;
+        else if (!helices[idx][1]) helices[idx][1] = seq;
+        else helices[idx][1] = seq; // overwrite second if both exist
+      }
+      continue;
+    }
+
     const hm = line.match(/helix\s*(\d+)[^:)]*[:\)]\s*([atcg]+)/i);
     const sm = line.match(/(?:second\s*strand|strand\s*2)[^:]*:\s*([atcg]+)/i);
     if (hm) { cur = parseInt(hm[1]); if (cur < 20) helices[cur][0] = hm[2].toUpperCase(); }
@@ -720,7 +734,7 @@ function buildAnalyzerTab() {
   const card = el('div', {class:'card'});
   const field = el('div', {class:'field'});
   field.innerHTML = '<label>Paste genome (20 helices, both strands)</label>';
-  const ta = el('textarea', {rows:'8', placeholder:'Helix 0.) atcgatcg\nSecond Strand: gctagcta\n\nHelix 1.) ...'});
+  const ta = el('textarea', {rows:'8', placeholder:'Helix 0.) atcgatcg\nSecond Strand: gctagcta\n\n(or numbered format e.g. 00:ACCTCAGGTT on each line, two lines per helix)'});
   field.appendChild(ta);
   card.appendChild(field);
 
