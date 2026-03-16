@@ -1,0 +1,339 @@
+:root {
+  --bg: #0a0f1a;
+  --surface: #0f172a;
+  --border: #1e293b;
+  --accent: #38bdf8;
+  --text: #cbd5e1;
+  --muted: #475569;
+  --dim: #334155;
+  --A: #eab308;
+  --T: #ef4444;
+  --C: #3b82f6;
+  --G: #22c55e;
+  --pos: #f97316;
+  --green-hi: #86efac;
+  --red-lo: #fca5a5;
+  --cat-body: #f97316;
+  --cat-legs: #a78bfa;
+  --cat-arms: #fb7185;
+  --cat-neck: #34d399;
+  --cat-tail: #f59e0b;
+  --cat-feet: #38bdf8;
+  --cat-head: #e879f9;
+  --cat-face: #818cf8;
+  --cat-mouth: #fb923c;
+  --cat-antlers: #86efac;
+  --cat-hat: #fbbf24;
+  --cat-color: #6ee7b7;
+  --cat-pattern: #67e8f9;
+  --cat-locomotion: #f472b6;
+  --cat-behavior: #94a3b8;
+  --cat-signals: #c084fc;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  min-height: 100vh;
+}
+
+/* CATEGORY COLORS */
+.cat-body {
+  color: var(--cat-body);
+}
+.cat-legs {
+  color: var(--cat-legs);
+}
+.cat-arms {
+  color: var(--cat-arms);
+}
+.cat-neck {
+  color: var(--cat-neck);
+}
+.cat-tail {
+  color: var(--cat-tail);
+}
+.cat-feet {
+  color: var(--cat-feet);
+}
+.cat-head {
+  color: var(--cat-head);
+}
+.cat-face {
+  color: var(--cat-face);
+}
+.cat-mouth {
+  color: var(--cat-mouth);
+}
+.cat-antlers {
+  color: var(--cat-antlers);
+}
+.cat-hat {
+  color: var(--cat-hat);
+}
+.cat-color {
+  color: var(--cat-color);
+}
+.cat-pattern {
+  color: var(--cat-pattern);
+}
+.cat-locomotion {
+  color: var(--cat-locomotion);
+}
+.cat-behavior {
+  color: var(--cat-behavior);
+}
+.cat-signals {
+  color: var(--cat-signals);
+}
+
+.cat-body-border {
+  border-color: color-mix(in srgb, var(--cat-body) 27%, transparent);
+}
+.cat-legs-border {
+  border-color: color-mix(in srgb, var(--cat-legs) 27%, transparent);
+}
+.cat-arms-border {
+  border-color: color-mix(in srgb, var(--cat-arms) 27%, transparent);
+}
+.cat-neck-border {
+  border-color: color-mix(in srgb, var(--cat-neck) 27%, transparent);
+}
+.cat-tail-border {
+  border-color: color-mix(in srgb, var(--cat-tail) 27%, transparent);
+}
+.cat-feet-border {
+  border-color: color-mix(in srgb, var(--cat-feet) 27%, transparent);
+}
+.cat-head-border {
+  border-color: color-mix(in srgb, var(--cat-head) 27%, transparent);
+}
+.cat-face-border {
+  border-color: color-mix(in srgb, var(--cat-face) 27%, transparent);
+}
+.cat-mouth-border {
+  border-color: color-mix(in srgb, var(--cat-mouth) 27%, transparent);
+}
+.cat-antlers-border {
+  border-color: color-mix(in srgb, var(--cat-antlers) 27%, transparent);
+}
+.cat-hat-border {
+  border-color: color-mix(in srgb, var(--cat-hat) 27%, transparent);
+}
+.cat-color-border {
+  border-color: color-mix(in srgb, var(--cat-color) 27%, transparent);
+}
+.cat-pattern-border {
+  border-color: color-mix(in srgb, var(--cat-pattern) 27%, transparent);
+}
+.cat-locomotion-border {
+  border-color: color-mix(in srgb, var(--cat-locomotion) 27%, transparent);
+}
+.cat-behavior-border {
+  border-color: color-mix(in srgb, var(--cat-behavior) 27%, transparent);
+}
+.cat-signals-border {
+  border-color: color-mix(in srgb, var(--cat-signals) 27%, transparent);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tabs-view {
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAV */
+#header {
+  background: var(--surface);
+  border-bottom: 2px solid #1e3a5f;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+#header h1 {
+  color: var(--accent);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+#header .legend {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--muted);
+}
+#header .legend span b {
+  font-size: 12px;
+}
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+}
+nav button {
+  padding: 9px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  transition: color 0.15s;
+}
+nav button.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+nav button:hover:not(.active) {
+  color: var(--text);
+}
+
+/* LAYOUT */
+#app {
+  padding: 14px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.tab {
+  display: none;
+}
+.tab.active {
+  display: block;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.two-col {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 12px;
+}
+.info {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* INPUTS */
+input,
+select,
+textarea {
+  background: var(--bg);
+  border: 1px solid #1e3a5f;
+  border-radius: 4px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 7px 10px;
+  width: 100%;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.field {
+  margin-bottom: 8px;
+}
+.field label {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+button.btn {
+  padding: 8px 18px;
+  background: #0f3a5f;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+}
+button.btn:hover {
+  background: #1a4a6f;
+}
+button.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+/* BASE CHIPS */
+.base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  font-weight: bold;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.base-A {
+  background: var(--A);
+  color: #111;
+}
+.base-T {
+  background: var(--T);
+  color: #111;
+}
+.base-C {
+  background: var(--C);
+  color: #fff;
+}
+.base-G {
+  background: var(--G);
+  color: #111;
+}
+.base-sm {
+  width: 16px;
+  height: 16px;
+  font-size: 10px;
+}
+.base-md {
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
+}
+.base-lg {
+  width: 30px;
+  height: 30px;
+  font-size: 17px;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dim);
+  border-radius: 3px;
+}

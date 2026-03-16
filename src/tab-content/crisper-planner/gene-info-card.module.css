@@ -1,0 +1,18 @@
+.geneInfoCard {
+  background: #0a1628;
+  border-color: #1e3a5f;
+}
+.geneInfoName {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.geneInfoBody {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.9;
+}
+.geneInfoHighlight {
+  color: #7dd3fc;
+}

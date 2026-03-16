@@ -1,0 +1,66 @@
+.helixBlock {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+.helixLabel {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.helixLabel span {
+  color: var(--dim);
+  font-size: 10px;
+  font-weight: normal;
+}
+.geneTiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.geneTile {
+  background: #111827;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: border-color 0.12s;
+  min-width: 80px;
+}
+.geneTile:hover { border-color: var(--accent); }
+.geneTile:global(.cat-body-border):hover      { border-color: var(--cat-body); }
+.geneTile:global(.cat-legs-border):hover      { border-color: var(--cat-legs); }
+.geneTile:global(.cat-arms-border):hover      { border-color: var(--cat-arms); }
+.geneTile:global(.cat-neck-border):hover      { border-color: var(--cat-neck); }
+.geneTile:global(.cat-tail-border):hover      { border-color: var(--cat-tail); }
+.geneTile:global(.cat-feet-border):hover      { border-color: var(--cat-feet); }
+.geneTile:global(.cat-head-border):hover      { border-color: var(--cat-head); }
+.geneTile:global(.cat-face-border):hover      { border-color: var(--cat-face); }
+.geneTile:global(.cat-mouth-border):hover     { border-color: var(--cat-mouth); }
+.geneTile:global(.cat-antlers-border):hover   { border-color: var(--cat-antlers); }
+.geneTile:global(.cat-hat-border):hover       { border-color: var(--cat-hat); }
+.geneTile:global(.cat-color-border):hover     { border-color: var(--cat-color); }
+.geneTile:global(.cat-pattern-border):hover   { border-color: var(--cat-pattern); }
+.geneTile:global(.cat-locomotion-border):hover { border-color: var(--cat-locomotion); }
+.geneTile:global(.cat-behavior-border):hover  { border-color: var(--cat-behavior); }
+.geneTile:global(.cat-signals-border):hover   { border-color: var(--cat-signals); }
+.pos {
+  color: var(--dim);
+  font-size: 9px;
+  margin-bottom: 1px;
+}
+.name {
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.cat {
+  font-size: 9px;
+  color: var(--muted);
+}

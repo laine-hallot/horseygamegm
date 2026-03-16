@@ -1,0 +1,36 @@
+.resultGene {
+  background: #0a0f1a;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  padding: 4px 7px;
+  min-width: 90px;
+}
+.rpos {
+  color: var(--dim);
+  font-size: 9px;
+}
+.rname {
+  font-size: 10px;
+  font-weight: bold;
+  margin: 1px 0 3px;
+}
+.rval {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+}
+.valEq {
+  color: var(--muted);
+}
+.valMissing {
+  color: var(--dim);
+}
+.strand2Label {
+  color: var(--dim);
+  font-size: 9px;
+  margin-left: 3px;
+}
+.alleleValue {
+  font-weight: bold;
+}

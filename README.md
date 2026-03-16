@@ -1,6 +1,6 @@
 # Horsey Genome Mapper
 
-An interactive reference tool for the horse genetics system in *Horsey Game*. Runs entirely in your browser — no installation, no internet connection required after download.
+An interactive reference tool for the horse genetics system in _Horsey Game_. Runs entirely in your browser — no installation, no internet connection required after download.
 
 **[Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3677395605)** · **[Download Latest Release](https://github.com/hikazey/horseygamegm/releases/latest)**
 
@@ -8,8 +8,8 @@ An interactive reference tool for the horse genetics system in *Horsey Game*. Ru
 
 ## What it does
 
-The game's DNA system works as follows: each horse has 20 double-stranded helices. 
-Every position in every helix maps directly to one gene, and the base (A/T/C/G) at that position selects one of four allele values for that gene, who's values are set by value "n" in the gene table. 
+The game's DNA system works as follows: each horse has 20 double-stranded helices.
+Every position in every helix maps directly to one gene, and the base (A/T/C/G) at that position selects one of four allele values for that gene, who's values are set by value "n" in the gene table.
 This tool makes that system navigable without memorizing anything.
 
 **Four tabs:**
@@ -30,15 +30,15 @@ The file is entirely self-contained. You can save it anywhere and open it direct
 ## Base color reference
 
 | Base | In-game color |
-|------|--------------|
-| A    | Yellow          |
-| T    | Red       |
-| C    | Blue         |
-| G    | Green        |
+| ---- | ------------- |
+| A    | Yellow        |
+| T    | Red           |
+| C    | Blue          |
+| G    | Green         |
 
 ## Reading helices in-game
 
-Helices are displayed as an X shape in the CRISPR Lab computer. Read strands from the **top to bottom** — position 0 is the top. 
+Helices are displayed as an X shape in the CRISPR Lab computer. Read strands from the **top to bottom** — position 0 is the top.
 Both the left and right strand (strand 1 and strand 2) at the same position control the same gene independently.
 
 ## Technical notes

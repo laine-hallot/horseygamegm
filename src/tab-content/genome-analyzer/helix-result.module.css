@@ -1,0 +1,46 @@
+.resultHelix {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+.helixResultHeader {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.helixResultHeader.hasData {
+  margin-bottom: 8px;
+}
+.helixLabelText {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 13px;
+  min-width: 65px;
+}
+.strandRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.strandLabel {
+  color: var(--dim);
+  font-size: 10px;
+  min-width: 24px;
+}
+.strandEq {
+  color: var(--dim);
+  font-size: 10px;
+}
+.noData {
+  color: var(--dim);
+  font-size: 11px;
+}
+.resultGenes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
