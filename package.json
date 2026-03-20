@@ -1,8 +1,12 @@
 {
   "name": "horseygamegm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "description": "An interactive reference tool for the horse genetics system in _Horsey Game_. Runs entirely in your browser — no installation, no internet connection required after download.",
   "workspaces": [
-    "./genome-mapper"
+    "./genome-mapper",
+    "./horsey-parser"
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.4",
@@ -23,7 +27,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/laine-hallot/horseygamegm/issues"
   },
