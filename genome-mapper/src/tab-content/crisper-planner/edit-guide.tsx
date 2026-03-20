@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { BaseChip } from '../../components/base-chip.tsx';
 import { BASES } from '../../data';
 import { type GeneLocation } from '../../types.ts';
 import { type GeneData } from '../../types.ts';
-import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor } from '../../utils.ts';
 import { SwapCard } from './sway-card';
+
 import styles from './crisper-planner.module.css';
 
 export const EditGuide: React.FC<{

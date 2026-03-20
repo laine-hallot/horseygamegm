@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { HELIX_MAP } from '../../data';
-import { HelixResult } from './helix-result';
 import { GenomeInput } from './genome-input';
+import { HelixResult } from './helix-result';
 
 const parseGenome = (text: string): [string, string][] => {
   const helices: [string, string][] = Array.from({ length: 20 }, () => [

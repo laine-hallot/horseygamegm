@@ -1,8 +1,10 @@
 // ── TAB: HELIX MAP ────────────────────────────────────────────────────────────
 
 import React from 'react';
+
 import { HELIX_MAP, GENES } from '../../data';
 import { catClass, catBorderClass } from '../../utils.ts';
+
 import styles from './helix-map.module.css';
 
 const GeneTile: React.FC<{

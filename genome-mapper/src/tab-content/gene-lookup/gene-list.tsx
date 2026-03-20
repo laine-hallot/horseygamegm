@@ -4,6 +4,7 @@ import { GENE_LOC } from '../../data';
 import { type GeneData } from '../../types.ts';
 import { catClass } from '../../utils.ts';
 import { GeneRow } from './gene-row';
+
 import styles from './gene-list.module.css';
 
 export const GeneList: React.FC<{

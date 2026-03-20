@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 import { GENES, GENE_LOC } from '../../data';
-import { GeneSelect } from './gene-select';
 import { EditGuide } from './edit-guide';
 import { GeneInfoCard } from './gene-info-card';
+import { GeneSelect } from './gene-select';
+
 import styles from './crisper-planner.module.css';
 
 export const CrisprTab: React.FC = () => {

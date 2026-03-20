@@ -1,6 +1,8 @@
-import React from 'react';
-import styles from './gene-list.module.css';
 import type { GeneLocation } from '../../types';
+
+import React from 'react';
+
+import styles from './gene-list.module.css';
 
 export const GeneRow: React.FC<{
   name: string;

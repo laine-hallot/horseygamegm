@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { BaseChip } from '../../components/base-chip';
 import { GeneResult } from './gene-result';
+
 import styles from './helix-result.module.css';
 
 export const HelixResult: React.FC<{

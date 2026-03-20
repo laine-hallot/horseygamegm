@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { BASE_LABEL } from '../../data';
 import { BaseChip } from '../../components/base-chip.tsx';
+import { BASE_LABEL } from '../../data';
 import { valColor } from '../../utils.ts';
+
 import styles from './crisper-planner.module.css';
 
 export const SwapCard: React.FC<{

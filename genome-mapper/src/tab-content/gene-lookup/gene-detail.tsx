@@ -1,10 +1,11 @@
 import React from 'react';
 
+import { BaseChip } from '../../components/base-chip.tsx';
 import { BASES, BASE_LABEL } from '../../data';
 import { type GeneLocation } from '../../types.ts';
 import { type GeneData } from '../../types.ts';
-import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor, catClass } from '../../utils.ts';
+
 import styles from './gene-detail.module.css';
 
 export const GeneDetail: React.FC<{

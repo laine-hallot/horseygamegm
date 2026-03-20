@@ -1,9 +1,11 @@
+import type { GeneLocation } from '../../types.ts';
+import type { GeneData } from '../../types.ts';
+
 import React from 'react';
 
 import { catClass } from '../../utils.ts';
+
 import styles from './gene-info-card.module.css';
-import type { GeneLocation } from '../../types.ts';
-import type { GeneData } from '../../types.ts';
 
 export const GeneInfoCard: React.FC<{
   name: string;

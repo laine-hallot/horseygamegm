@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styles from './genome-input.module.css';
 
 export const GenomeInput: React.FC<{

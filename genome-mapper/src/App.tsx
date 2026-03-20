@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { Tabs } from './tabs';
-import { AnalyzerTab } from './tab-content/genome-analyzer/genome-analyzer';
-import { GenesTab } from './tab-content/gene-lookup/gene-lookup';
 import { CrisprTab } from './tab-content/crisper-planner/crisper-planner';
+import { GenesTab } from './tab-content/gene-lookup/gene-lookup';
+import { AnalyzerTab } from './tab-content/genome-analyzer/genome-analyzer';
 import { MapTab } from './tab-content/helix-map/helix-map';
+import { Tabs } from './tabs';
 
 import styles from './App.module.css';
 

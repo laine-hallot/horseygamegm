@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { GENES, BASE_IDX } from '../../data';
 import { BaseChip } from '../../components/base-chip.tsx';
+import { GENES, BASE_IDX } from '../../data';
 import { valColor, catClass, catBorderClass } from '../../utils.ts';
+
 import styles from './gene-result.module.css';
 
 export const GeneResult: React.FC<{

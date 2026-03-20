@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 import { GENES, GENE_LOC } from '../../data';
-import styles from './gene-lookup.module.css';
-
-import { GeneFilters } from './gene-filter';
 import { GeneDetail } from './gene-detail';
+import { GeneFilters } from './gene-filter';
 import { GeneList } from './gene-list';
+
+import styles from './gene-lookup.module.css';
 
 export const GenesTab: React.FC<{ preselect?: string }> = ({ preselect }) => {
   const [search, setSearch] = useState('');
