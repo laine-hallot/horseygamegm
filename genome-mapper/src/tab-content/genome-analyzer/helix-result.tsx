@@ -2,7 +2,7 @@ import type {
   ParsedBase,
   ParsedHelix,
   GeneNames,
-} from '@horseygamegm/horsey-parser';
+} from '@laine-hallot/horsey-parser';
 
 import React, { useCallback } from 'react';
 

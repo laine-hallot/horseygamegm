@@ -3,11 +3,11 @@ import type {
   ParsedGenome,
   ParsedHelix,
   Result,
-} from '@horseygamegm/horsey-parser';
+} from '@laine-hallot/horsey-parser';
 
 import { useCallback, useState } from 'react';
 
-import { Deserialize } from '@horseygamegm/horsey-parser';
+import { Deserialize } from '@laine-hallot/horsey-parser';
 
 export const useGenome = () => {
   const [text, setText] = useState('');

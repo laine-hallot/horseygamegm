@@ -1,8 +1,8 @@
-import type { BaseName } from '@horseygamegm/horsey-parser';
+import type { BaseName } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { BASE_LABEL } from '@horseygamegm/horsey-parser';
+import { BASE_LABEL } from '@laine-hallot/horsey-parser';
 
 import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor } from '../../utils.ts';

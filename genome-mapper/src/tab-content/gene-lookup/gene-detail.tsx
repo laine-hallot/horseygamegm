@@ -1,8 +1,8 @@
-import type { GeneLocation, GeneData } from '@horseygamegm/horsey-parser';
+import type { GeneLocation, GeneData } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { BASES, BASE_LABEL } from '@horseygamegm/horsey-parser';
+import { BASES, BASE_LABEL } from '@laine-hallot/horsey-parser';
 
 import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor, catClass } from '../../utils.ts';

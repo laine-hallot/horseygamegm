@@ -1,8 +1,8 @@
-import type { GeneData, GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneData, GeneNames } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { GENE_LOC } from '@horseygamegm/horsey-parser';
+import { GENE_LOC } from '@laine-hallot/horsey-parser';
 
 import { catClass } from '../../utils.ts';
 import { GeneRow } from './gene-row';

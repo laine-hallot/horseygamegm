@@ -1,9 +1,9 @@
-import type { GeneData, GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneData, GeneNames } from '@laine-hallot/horsey-parser';
 
 import React, { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
-import { GENES, GENE_LOC, isGeneName } from '@horseygamegm/horsey-parser';
+import { GENES, GENE_LOC, isGeneName } from '@laine-hallot/horsey-parser';
 
 import { GeneDetail } from './gene-detail';
 import { GeneFilters } from './gene-filter';

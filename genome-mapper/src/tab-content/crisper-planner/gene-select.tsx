@@ -1,9 +1,9 @@
-import type { GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneNames } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { GENES, GENE_LOC, ALL_CATS } from '@horseygamegm/horsey-parser';
+import { GENES, GENE_LOC, ALL_CATS } from '@laine-hallot/horsey-parser';
 
 export const GeneSelect: React.FC<{
   value: GeneNames | undefined;

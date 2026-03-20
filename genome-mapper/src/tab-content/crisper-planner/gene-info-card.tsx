@@ -2,7 +2,7 @@ import type {
   GeneData,
   GeneLocation,
   GeneNames,
-} from '@horseygamegm/horsey-parser';
+} from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 

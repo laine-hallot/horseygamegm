@@ -1,9 +1,9 @@
-import type { GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneNames } from '@laine-hallot/horsey-parser';
 
 import React, { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 
-import { GENES, GENE_LOC, isGeneName } from '@horseygamegm/horsey-parser';
+import { GENES, GENE_LOC, isGeneName } from '@laine-hallot/horsey-parser';
 
 import { EditGuide } from './edit-guide';
 import { GeneInfoCard } from './gene-info-card';

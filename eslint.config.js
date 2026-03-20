@@ -51,12 +51,12 @@ export default defineConfig([
             {
               groupName: 'type-workspace',
               modifiers: ['type'],
-              elementNamePattern: '^@horseygamegm/.*',
+              elementNamePattern: '^@laine-hallot/.*',
             },
             {
               groupName: 'value-workspace',
               modifiers: ['value'],
-              elementNamePattern: '^@horseygamegm/.*',
+              elementNamePattern: '^@laine-hallot/.*',
             },
           ],
         },

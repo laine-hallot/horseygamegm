@@ -1,9 +1,9 @@
-import type { GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneNames } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import { HELIX_MAP, GENES } from '@horseygamegm/horsey-parser';
+import { HELIX_MAP, GENES } from '@laine-hallot/horsey-parser';
 
 import { catClass, catBorderClass } from '../../utils.ts';
 

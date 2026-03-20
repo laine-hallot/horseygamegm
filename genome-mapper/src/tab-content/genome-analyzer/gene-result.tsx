@@ -2,11 +2,11 @@ import type {
   ParsedBase,
   BaseName,
   GeneNames,
-} from '@horseygamegm/horsey-parser';
+} from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { GENES, BASE_IDX } from '@horseygamegm/horsey-parser';
+import { GENES, BASE_IDX } from '@laine-hallot/horsey-parser';
 
 import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor, catClass, catBorderClass } from '../../utils.ts';

@@ -1,8 +1,8 @@
-import type { ParsedBase, ParsedGenome } from '@horseygamegm/horsey-parser';
+import type { ParsedBase, ParsedGenome } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { HELIX_MAP } from '@horseygamegm/horsey-parser';
+import { HELIX_MAP } from '@laine-hallot/horsey-parser';
 
 import { useGenome } from '../../hooks/genome';
 import { GenomeInput } from './genome-input';

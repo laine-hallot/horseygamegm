@@ -1,5 +1,5 @@
 {
-  "name": "@horseygamegm/horsey-parser",
+  "name": "@laine-hallot/horsey-parser",
   "version": "0.1.0",
   "description": "A parser for Horsey Game gnome data",
   "main": "dist/horsey-parser.js",

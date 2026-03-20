@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ALL_CATS } from '@horseygamegm/horsey-parser';
+import { ALL_CATS } from '@laine-hallot/horsey-parser';
 
 export const GeneFilters: React.FC<{
   search: string;

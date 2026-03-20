@@ -2,11 +2,11 @@ import type {
   GeneData,
   GeneLocation,
   GeneNames,
-} from '@horseygamegm/horsey-parser';
+} from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
-import { BASES } from '@horseygamegm/horsey-parser';
+import { BASES } from '@laine-hallot/horsey-parser';
 
 import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor } from '../../utils.ts';

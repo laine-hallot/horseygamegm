@@ -13,32 +13,35 @@ import { TabsLayout } from './tab-layout';
 
 import styles from './App.module.css';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    Component: TabsLayout,
-    children: [
-      {
-        index: true,
-        Component: MapTab,
-      },
-      {
-        path: 'genes',
-        Component: GenesTab,
-      },
-      {
-        path: 'crispr',
-        Component: CrisprTab,
-      },
-      {
-        path: 'analyzer',
-        Component: AnalyzerTab,
-      },
-    ] satisfies (Omit<RouteObject, 'path'> & {
-      path?: (typeof tabs)[number]['path'];
-    })[],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      Component: TabsLayout,
+      children: [
+        {
+          index: true,
+          Component: MapTab,
+        },
+        {
+          path: 'genes',
+          Component: GenesTab,
+        },
+        {
+          path: 'crispr',
+          Component: CrisprTab,
+        },
+        {
+          path: 'analyzer',
+          Component: AnalyzerTab,
+        },
+      ] satisfies (Omit<RouteObject, 'path'> & {
+        path?: (typeof tabs)[number]['path'];
+      })[],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL ?? '' },
+);
 
 export const App: React.FC<{}> = () => (
   <>

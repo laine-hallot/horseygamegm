@@ -1,4 +1,4 @@
-import type { GeneLocation, GeneNames } from '@horseygamegm/horsey-parser';
+import type { GeneLocation, GeneNames } from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 import { useNavigate } from 'react-router';
