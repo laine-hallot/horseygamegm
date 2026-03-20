@@ -1,8 +1,9 @@
 import type { GeneData, GeneNames } from '@horseygamegm/horsey-parser';
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
-import { GENES, GENE_LOC } from '@horseygamegm/horsey-parser';
+import { GENES, GENE_LOC, isGeneName } from '@horseygamegm/horsey-parser';
 
 import { GeneDetail } from './gene-detail';
 import { GeneFilters } from './gene-filter';
@@ -10,12 +11,19 @@ import { GeneList } from './gene-list';
 
 import styles from './gene-lookup.module.css';
 
-export const GenesTab: React.FC<{ preselect?: GeneNames }> = ({
-  preselect,
-}) => {
+export const GenesTab: React.FC<{}> = () => {
+  const [searchParams, _setSearchParams] = useSearchParams();
+
   const [search, setSearch] = useState('');
   const [cat, setCat] = useState('all');
-  const [selected, setSelected] = useState<GeneNames | null>(preselect ?? null);
+
+  const selected = useMemo<GeneNames | undefined>(() => {
+    const preselect = searchParams.get('name');
+    if (preselect && isGeneName(preselect)) {
+      return preselect;
+    }
+    return undefined;
+  }, [searchParams]);
 
   const query = search.toLowerCase();
   const filtered = (Object.entries(GENES) as [GeneNames, GeneData][]).filter(
@@ -38,11 +46,7 @@ export const GenesTab: React.FC<{ preselect?: GeneNames }> = ({
           onSearch={setSearch}
           onCat={setCat}
         />
-        <GeneList
-          entries={filtered}
-          selected={selected}
-          onSelect={setSelected}
-        />
+        <GeneList entries={filtered} selected={selected} />
       </div>
       <div>
         {selectedGene && selected ? (

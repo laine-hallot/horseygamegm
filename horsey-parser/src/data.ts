@@ -1474,6 +1474,8 @@ export const GENES = {
 } satisfies Record<string, GeneData>;
 
 export type GeneNames = keyof typeof GENES;
+export const isGeneName = (name: string): name is GeneNames => name in GENES;
+
 export const HELIX_MAP: GeneNames[][] = [
   [
     'BONES',

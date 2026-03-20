@@ -11,9 +11,8 @@ import styles from './gene-list.module.css';
 
 export const GeneList: React.FC<{
   entries: [GeneNames, GeneData][];
-  selected: GeneNames | null;
-  onSelect: (name: GeneNames) => void;
-}> = ({ entries, selected, onSelect }) => (
+  selected: GeneNames | undefined;
+}> = ({ entries, selected }) => (
   <div className={styles.geneList}>
     {entries.map(([name, gene]) => (
       <GeneRow
@@ -23,7 +22,6 @@ export const GeneList: React.FC<{
         catClass={catClass(gene.category)}
         location={GENE_LOC[name]}
         selected={selected === name}
-        onClick={() => onSelect(name)}
       />
     ))}
   </div>

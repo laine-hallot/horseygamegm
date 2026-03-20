@@ -1,6 +1,7 @@
 import type { GeneNames } from '@horseygamegm/horsey-parser';
 
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 import { HELIX_MAP, GENES } from '@horseygamegm/horsey-parser';
 
@@ -33,42 +34,40 @@ const GeneTile: React.FC<{
 const HelixBlock: React.FC<{
   helixIndex: number;
   genes: GeneNames[];
-  onSelectGene?: (name: GeneNames) => void;
-}> = ({ helixIndex, genes, onSelectGene }) => (
-  <div className={styles.helixBlock}>
-    <div className={styles.helixLabel}>
-      HELIX {helixIndex}
-      <span>{genes.length} positions</span>
+}> = ({ helixIndex, genes }) => {
+  const navigator = useNavigate();
+  const onSelectGene = (name: GeneNames) => {
+    navigator(`/genes?name=${name}`);
+  };
+  return (
+    <div className={styles.helixBlock}>
+      <div className={styles.helixLabel}>
+        HELIX {helixIndex}
+        <span>{genes.length} positions</span>
+      </div>
+      <div className={styles.geneTiles}>
+        {genes.map((name, position) => (
+          <GeneTile
+            key={position}
+            name={name}
+            position={position}
+            onClick={() => onSelectGene?.(name)}
+          />
+        ))}
+      </div>
     </div>
-    <div className={styles.geneTiles}>
-      {genes.map((name, position) => (
-        <GeneTile
-          key={position}
-          name={name}
-          position={position}
-          onClick={() => onSelectGene?.(name)}
-        />
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
-export const MapTab: React.FC<{ onSelectGene?: (name: GeneNames) => void }> = ({
-  onSelectGene,
-}) => (
+export const MapTab: React.FC<{}> = () => (
   <div>
     <div className="card info">
       Each helix position maps to exactly one gene. The base (A/T/C/G) at that
       position selects the allele value. Both strands are read independently.
-      {onSelectGene && ' Click any gene tile to view it in Gene Lookup.'}
+      Click any gene tile to view it in Gene Lookup.
     </div>
     {HELIX_MAP.map((genes, helixIndex) => (
-      <HelixBlock
-        key={helixIndex}
-        helixIndex={helixIndex}
-        genes={genes}
-        onSelectGene={onSelectGene}
-      />
+      <HelixBlock key={helixIndex} helixIndex={helixIndex} genes={genes} />
     ))}
   </div>
 );

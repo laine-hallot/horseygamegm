@@ -182,7 +182,7 @@ nav {
   border-bottom: 1px solid var(--border);
   display: flex;
 }
-nav button {
+nav .nav-link {
   padding: 9px 18px;
   background: transparent;
   border: none;
@@ -193,12 +193,13 @@ nav button {
   font-size: 12px;
   letter-spacing: 0.04em;
   transition: color 0.15s;
+  text-decoration: none;
 }
-nav button.active {
+nav .nav-link.active {
   color: var(--accent);
   border-bottom-color: var(--accent);
 }
-nav button:hover:not(.active) {
+nav .nav-link:hover:not(.active) {
   color: var(--text);
 }
 
