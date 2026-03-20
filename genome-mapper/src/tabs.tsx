@@ -29,7 +29,7 @@ export const Tabs: React.FC<{
         ))}
       </nav>
 
-      <div id="app">{tabs[activeTab].content()}</div>
+      <div id="app">{tabs[activeTab]!.content()}</div>
     </div>
   );
 };

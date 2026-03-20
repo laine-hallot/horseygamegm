@@ -1,3 +1,5 @@
+import type { GeneNames } from '@horseygamegm/horsey-parser';
+
 import { useState } from 'react';
 
 import { CrisprTab } from './tab-content/crisper-planner/crisper-planner';
@@ -9,10 +11,10 @@ import { Tabs } from './tabs';
 import styles from './App.module.css';
 
 export const App = () => {
-  const [genePreselect, setGenePreselect] = useState<string | undefined>();
+  const [genePreselect, setGenePreselect] = useState<GeneNames | undefined>();
   const [activeTab, setActiveTab] = useState('map');
 
-  const handleSelectGene = (name: string) => {
+  const handleSelectGene = (name: GeneNames) => {
     setGenePreselect(name);
     setActiveTab('genes');
   };

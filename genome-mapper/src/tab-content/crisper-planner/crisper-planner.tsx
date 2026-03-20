@@ -1,6 +1,9 @@
+import type { GeneNames } from '@horseygamegm/horsey-parser';
+
 import React, { useState } from 'react';
 
-import { GENES, GENE_LOC } from '../../data';
+import { GENES, GENE_LOC } from '@horseygamegm/horsey-parser';
+
 import { EditGuide } from './edit-guide';
 import { GeneInfoCard } from './gene-info-card';
 import { GeneSelect } from './gene-select';
@@ -8,9 +11,9 @@ import { GeneSelect } from './gene-select';
 import styles from './crisper-planner.module.css';
 
 export const CrisprTab: React.FC = () => {
-  const [selected, setSelected] = useState('');
-  const gene = GENES[selected];
-  const location = GENE_LOC[selected];
+  const [selected, setSelected] = useState<GeneNames>();
+  const gene = selected !== undefined ? GENES[selected] : undefined;
+  const location = selected !== undefined ? GENE_LOC[selected] : undefined;
 
   return (
     <div>
@@ -23,12 +26,12 @@ export const CrisprTab: React.FC = () => {
       <div className="two-col">
         <div>
           <GeneSelect value={selected} onChange={setSelected} />
-          {gene && (
+          {selected && gene && (
             <GeneInfoCard name={selected} gene={gene} location={location} />
           )}
         </div>
         <div>
-          {gene && (
+          {selected && gene && (
             <EditGuide name={selected} gene={gene} location={location} />
           )}
         </div>

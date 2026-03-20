@@ -1,4 +1,10 @@
-import React from 'react';
+import type {
+  ParsedBase,
+  ParsedHelix,
+  GeneNames,
+} from '@horseygamegm/horsey-parser';
+
+import React, { useCallback } from 'react';
 
 import { BaseChip } from '../../components/base-chip';
 import { GeneResult } from './gene-result';
@@ -6,31 +12,44 @@ import { GeneResult } from './gene-result';
 import styles from './helix-result.module.css';
 
 export const HelixResult: React.FC<{
-  helixIndex: number;
-  genes: string[];
-  strand1: string;
-  strand2: string;
-}> = ({ helixIndex, genes, strand1, strand2 }) => {
+  genomeIndex: number;
+  genes: GeneNames[];
+  strand1: ParsedHelix | undefined;
+  strand2: ParsedHelix | undefined;
+  onChangeGene: (
+    gene: ParsedBase,
+    genomeIndex: number,
+    helixIndex: number,
+    basePosition: number,
+  ) => void;
+}> = ({ genomeIndex, genes, strand1, strand2, onChangeGene }) => {
+  const handleGeneChange = useCallback(
+    (gene: ParsedBase, helixIndex: number, basePosition: number) => {
+      onChangeGene(gene, genomeIndex, helixIndex, basePosition);
+    },
+    [genomeIndex, onChangeGene],
+  );
+
   const hasData = strand1 || strand2;
   return (
     <div className={styles.resultHelix}>
       <div
         className={`${styles.helixResultHeader}${hasData ? ` ${styles.hasData}` : ''}`}
       >
-        <span className={styles.helixLabelText}>HELIX {helixIndex}</span>
+        <span className={styles.helixLabelText}>HELIX {genomeIndex}</span>
         {strand1 && (
           <div className={styles.strandRow}>
             <span className={styles.strandLabel}>S1</span>
-            {strand1.split('').map((base, index) => (
-              <BaseChip key={index} b={base} size="sm" />
+            {strand1.data.bases.data.map((base, index) => (
+              <BaseChip key={index} b={base.data.base} size="sm" />
             ))}
           </div>
         )}
         {strand2 && strand2 !== strand1 && (
           <div className={styles.strandRow}>
             <span className={styles.strandLabel}>S2</span>
-            {strand2.split('').map((base, index) => (
-              <BaseChip key={index} b={base} size="sm" />
+            {strand2.data.bases.data.map((base, index) => (
+              <BaseChip key={index} b={base.data.base} size="sm" />
             ))}
           </div>
         )}
@@ -46,8 +65,9 @@ export const HelixResult: React.FC<{
               key={position}
               name={name}
               position={position}
-              base1={strand1?.[position]?.toUpperCase()}
-              base2={strand2?.[position]?.toUpperCase()}
+              base1={strand1?.data.bases.data[position]}
+              base2={strand2?.data.bases.data[position]}
+              onChangeGene={handleGeneChange}
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-import type { GeneLocation } from '../../types';
+import type { GeneLocation } from '@horseygamegm/horsey-parser';
 
 import React from 'react';
 

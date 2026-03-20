@@ -1,22 +1,75 @@
+import type {
+  ParsedBase,
+  BaseName,
+  GeneNames,
+} from '@horseygamegm/horsey-parser';
+
 import React from 'react';
 
+import { GENES, BASE_IDX } from '@horseygamegm/horsey-parser';
+
 import { BaseChip } from '../../components/base-chip.tsx';
-import { GENES, BASE_IDX } from '../../data';
 import { valColor, catClass, catBorderClass } from '../../utils.ts';
 
 import styles from './gene-result.module.css';
 
+const baseOptions = ['A', 'T', 'G', 'C'];
+
+const GeneSelectChip: React.FC<{
+  baseValue: ParsedBase;
+  name: GeneNames;
+  onChangeGene: (gene: ParsedBase) => void;
+}> = ({ baseValue, onChangeGene }) => {
+  const gene = GENES[baseValue.data.gene];
+  const strandValue =
+    baseValue && gene
+      ? gene.alleleValues[BASE_IDX[baseValue.data.base]!]
+      : null;
+  return (
+    <div className={styles.geneSelectChip}>
+      <BaseChip b={baseValue.data.base} size="sm" />
+      <select
+        onChange={(event) =>
+          onChangeGene({
+            ...baseValue,
+            data: {
+              base: event.target.value as BaseName,
+              gene: baseValue.data.gene,
+            },
+          })
+        }
+        defaultValue={baseValue.data.base}
+        autoComplete="false"
+      >
+        {baseOptions.map((base, index) => (
+          <option key={base} value={base}>
+            {base}: {gene.alleleValues[index] ?? '??'}
+          </option>
+        ))}
+      </select>
+      <span className={styles.valEq}>=</span>
+      <span
+        className={`${styles.alleleValue}`}
+        style={{ color: valColor(strandValue) }}
+      >
+        {strandValue}
+      </span>
+    </div>
+  );
+};
+
 export const GeneResult: React.FC<{
-  name: string;
+  name: GeneNames;
   position: number;
-  base1?: string;
-  base2?: string;
-}> = ({ name, position, base1, base2 }) => {
+  base1?: ParsedBase;
+  base2?: ParsedBase;
+  onChangeGene: (
+    gene: ParsedBase,
+    helixIndex: number,
+    basePosition: number,
+  ) => void;
+}> = ({ name, position, base1, base2, onChangeGene }) => {
   const gene = GENES[name];
-  const strand1Value =
-    base1 && gene ? gene.alleleValues[BASE_IDX[base1]] : null;
-  const strand2Value =
-    base2 && gene ? gene.alleleValues[BASE_IDX[base2]] : null;
   return (
     <div
       className={`${styles.resultGene}${gene ? ` ${catBorderClass(gene.category)}` : ''}`}
@@ -29,31 +82,20 @@ export const GeneResult: React.FC<{
       </div>
       <div className={styles.rval}>
         {base1 ? (
-          <>
-            <BaseChip b={base1} size="sm" />
-            <span className={styles.valEq}>=</span>
-            <span
-              className={`${styles.alleleValue}`}
-              style={{ color: valColor(strand1Value) }}
-            >
-              {strand1Value}
-            </span>
-          </>
+          <GeneSelectChip
+            baseValue={base1}
+            name={name}
+            onChangeGene={(gene: ParsedBase) => onChangeGene(gene, 0, position)}
+          />
         ) : (
           <span className={styles.valMissing}>—</span>
         )}
-        {base2 && base2 !== base1 && (
-          <>
-            <span className={styles.strand2Label}>S2:</span>
-            <BaseChip b={base2} size="sm" />
-            <span className={styles.valEq}>=</span>
-            <span
-              className={styles.alleleValue}
-              style={{ color: valColor(strand2Value) }}
-            >
-              {strand2Value}
-            </span>
-          </>
+        {base2 && (
+          <GeneSelectChip
+            baseValue={base2}
+            name={name}
+            onChangeGene={(gene: ParsedBase) => onChangeGene(gene, 1, position)}
+          />
         )}
       </div>
     </div>

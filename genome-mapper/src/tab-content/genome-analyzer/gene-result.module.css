@@ -34,3 +34,20 @@
 .alleleValue {
   font-weight: bold;
 }
+
+.gene-select-chip {
+  position: relative;
+}
+
+.gene-select-chip select {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  opacity: 0;
+}

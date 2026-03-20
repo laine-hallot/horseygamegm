@@ -1,16 +1,21 @@
+import type {
+  GeneData,
+  GeneLocation,
+  GeneNames,
+} from '@horseygamegm/horsey-parser';
+
 import React from 'react';
 
+import { BASES } from '@horseygamegm/horsey-parser';
+
 import { BaseChip } from '../../components/base-chip.tsx';
-import { BASES } from '../../data';
-import { type GeneLocation } from '../../types.ts';
-import { type GeneData } from '../../types.ts';
 import { valColor } from '../../utils.ts';
 import { SwapCard } from './sway-card';
 
 import styles from './crisper-planner.module.css';
 
 export const EditGuide: React.FC<{
-  name: string;
+  name: GeneNames;
   gene: GeneData;
   location?: GeneLocation;
 }> = ({ name, gene, location }) => {
@@ -32,19 +37,22 @@ export const EditGuide: React.FC<{
         position on both strands.
       </div>
       <div className={styles.swapGrid}>
-        {BASES.map((base, index) => (
-          <SwapCard
-            key={base}
-            base={base}
-            index={index}
-            value={gene.alleleValues[index]}
-            isMax={gene.alleleValues[index] === maxVal}
-            isMinNeg={
-              gene.alleleValues[index] === minVal &&
-              gene.alleleValues[index] < 0
-            }
-          />
-        ))}
+        {BASES.map((base, index) => {
+          const alleleValue = gene.alleleValues[index];
+          if (alleleValue === undefined) {
+            return null;
+          }
+          return (
+            <SwapCard
+              key={base}
+              base={base}
+              index={index}
+              value={alleleValue}
+              isMax={alleleValue === maxVal}
+              isMinNeg={alleleValue === minVal && alleleValue < 0}
+            />
+          );
+        })}
       </div>
       <div className={styles.hintBar}>
         Quick ref at H{location ? location.helixNumber : '?'} P

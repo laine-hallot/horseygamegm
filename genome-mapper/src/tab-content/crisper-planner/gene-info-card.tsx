@@ -1,5 +1,8 @@
-import type { GeneLocation } from '../../types.ts';
-import type { GeneData } from '../../types.ts';
+import type {
+  GeneData,
+  GeneLocation,
+  GeneNames,
+} from '@horseygamegm/horsey-parser';
 
 import React from 'react';
 
@@ -8,7 +11,7 @@ import { catClass } from '../../utils.ts';
 import styles from './gene-info-card.module.css';
 
 export const GeneInfoCard: React.FC<{
-  name: string;
+  name: GeneNames;
   gene: GeneData;
   location?: GeneLocation;
 }> = ({ name, gene, location }) => (

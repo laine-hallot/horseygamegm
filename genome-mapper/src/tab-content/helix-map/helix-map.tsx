@@ -1,14 +1,15 @@
-// ── TAB: HELIX MAP ────────────────────────────────────────────────────────────
+import type { GeneNames } from '@horseygamegm/horsey-parser';
 
 import React from 'react';
 
-import { HELIX_MAP, GENES } from '../../data';
+import { HELIX_MAP, GENES } from '@horseygamegm/horsey-parser';
+
 import { catClass, catBorderClass } from '../../utils.ts';
 
 import styles from './helix-map.module.css';
 
 const GeneTile: React.FC<{
-  name: string;
+  name: GeneNames;
   position: number;
   onClick?: () => void;
 }> = ({ name, position, onClick }) => {
@@ -31,8 +32,8 @@ const GeneTile: React.FC<{
 
 const HelixBlock: React.FC<{
   helixIndex: number;
-  genes: string[];
-  onSelectGene?: (name: string) => void;
+  genes: GeneNames[];
+  onSelectGene?: (name: GeneNames) => void;
 }> = ({ helixIndex, genes, onSelectGene }) => (
   <div className={styles.helixBlock}>
     <div className={styles.helixLabel}>
@@ -52,7 +53,7 @@ const HelixBlock: React.FC<{
   </div>
 );
 
-export const MapTab: React.FC<{ onSelectGene?: (name: string) => void }> = ({
+export const MapTab: React.FC<{ onSelectGene?: (name: GeneNames) => void }> = ({
   onSelectGene,
 }) => (
   <div>

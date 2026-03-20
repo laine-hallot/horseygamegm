@@ -1,9 +1,10 @@
+import type { GeneLocation, GeneData } from '@horseygamegm/horsey-parser';
+
 import React from 'react';
 
+import { BASES, BASE_LABEL } from '@horseygamegm/horsey-parser';
+
 import { BaseChip } from '../../components/base-chip.tsx';
-import { BASES, BASE_LABEL } from '../../data';
-import { type GeneLocation } from '../../types.ts';
-import { type GeneData } from '../../types.ts';
 import { valColor, catClass } from '../../utils.ts';
 
 import styles from './gene-detail.module.css';
@@ -15,6 +16,9 @@ export const GeneDetail: React.FC<{
 }> = ({ name, gene, location }) => {
   const maxVal = Math.max(...gene.alleleValues);
   const maxBase = BASES[gene.alleleValues.indexOf(maxVal)];
+  if (maxBase === undefined) {
+    return null;
+  }
   return (
     <div className="card">
       <div className={styles.geneDetailHeader}>
@@ -32,7 +36,9 @@ export const GeneDetail: React.FC<{
           <span className={styles.geneDetailMeta}>Location:</span>
           <span className={styles.lval}>Helix {location.helixNumber}</span>
           <span className={styles.locBarSeparator}>·</span>
-          <span className={`${styles.lval} ${styles.lvalSm}`}>Position {location.position}</span>
+          <span className={`${styles.lval} ${styles.lvalSm}`}>
+            Position {location.position}
+          </span>
           <span className={styles.locBarSeparator}>·</span>
           <span className={styles.locBarStrands}>same on both strands</span>
         </div>
