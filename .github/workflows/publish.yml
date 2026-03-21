@@ -14,8 +14,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes in horsey-parser
+        id: diff
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            echo "No previous tag found, proceeding with publish"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          elif git diff --quiet "$PREV_TAG" HEAD -- horsey-parser/; then
+            echo "No changes in horsey-parser since $PREV_TAG, skipping"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in horsey-parser since $PREV_TAG"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
 
       - uses: actions/setup-node@v4
+        if: steps.diff.outputs.changed == 'true'
         with:
           node-version: 24
           cache: npm
@@ -23,11 +41,14 @@ jobs:
           scope: "@laine-hallot"
 
       - run: npm ci
+        if: steps.diff.outputs.changed == 'true'
 
       - run: npm run build
+        if: steps.diff.outputs.changed == 'true'
         working-directory: horsey-parser
 
       - run: npm publish
+        if: steps.diff.outputs.changed == 'true'
         working-directory: horsey-parser
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 permissions:
   contents: read
@@ -17,25 +17,52 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes in genome-mapper
+        id: diff
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            echo "No previous tag found, proceeding with build"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          elif git diff --quiet "$PREV_TAG" HEAD -- genome-mapper/; then
+            echo "No changes in genome-mapper since $PREV_TAG, skipping"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in genome-mapper since $PREV_TAG"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
 
       - uses: actions/setup-node@v4
+        if: steps.diff.outputs.changed == 'true'
         with:
           node-version: 20
           cache: npm
 
       - run: npm ci
+        if: steps.diff.outputs.changed == 'true'
+
+      - run: npm -w horsey-parser run build
+        if: steps.diff.outputs.changed == 'true'
 
       - run: npm run build
+        if: steps.diff.outputs.changed == 'true'
         working-directory: genome-mapper
 
       - uses: actions/upload-pages-artifact@v3
+        if: steps.diff.outputs.changed == 'true'
         with:
           path: genome-mapper/dist
 
   deploy:
     needs: build
+    if: needs.build.outputs.changed == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
