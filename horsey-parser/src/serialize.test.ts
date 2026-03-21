@@ -29,6 +29,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'C',
                 gene: 'BONES',
               },
+              name: 'base',
             },
             {
               column: 1,
@@ -38,6 +39,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'C',
                 gene: 'BONES2',
               },
+              name: 'base',
             },
             {
               column: 2,
@@ -47,6 +49,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'A',
                 gene: 'OSTODERM',
               },
+              name: 'base',
             },
             {
               column: 3,
@@ -56,6 +59,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'OSTO_SIZE',
               },
+              name: 'base',
             },
             {
               column: 4,
@@ -65,6 +69,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'G',
                 gene: 'GIANT_DWARF',
               },
+              name: 'base',
             },
             {
               column: 5,
@@ -74,6 +79,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'G',
                 gene: 'TAIL_BOTTOM',
               },
+              name: 'base',
             },
             {
               column: 6,
@@ -83,6 +89,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'A',
                 gene: 'LEG_STRETCH2',
               },
+              name: 'base',
             },
             {
               column: 7,
@@ -92,6 +99,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'A',
                 gene: 'ARM_STRETCH2',
               },
+              name: 'base',
             },
             {
               column: 8,
@@ -101,6 +109,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'HEAD_THICK_SKULL',
               },
+              name: 'base',
             },
             {
               column: 9,
@@ -110,10 +119,13 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'C',
                 gene: 'NECK_STIFF',
               },
+              name: 'base',
             },
           ],
+          name: 'base-sequence',
         },
       },
+      name: 'helix',
     },
     {
       column: 0,
@@ -134,6 +146,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'C',
                 gene: 'BONES',
               },
+              name: 'base',
             },
             {
               column: 1,
@@ -143,6 +156,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'BONES2',
               },
+              name: 'base',
             },
             {
               column: 2,
@@ -152,6 +166,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'A',
                 gene: 'OSTODERM',
               },
+              name: 'base',
             },
             {
               column: 3,
@@ -161,6 +176,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'OSTO_SIZE',
               },
+              name: 'base',
             },
             {
               column: 4,
@@ -170,6 +186,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'G',
                 gene: 'GIANT_DWARF',
               },
+              name: 'base',
             },
             {
               column: 5,
@@ -179,6 +196,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'G',
                 gene: 'TAIL_BOTTOM',
               },
+              name: 'base',
             },
             {
               column: 6,
@@ -188,6 +206,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'A',
                 gene: 'LEG_STRETCH2',
               },
+              name: 'base',
             },
             {
               column: 7,
@@ -197,6 +216,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'ARM_STRETCH2',
               },
+              name: 'base',
             },
             {
               column: 8,
@@ -206,6 +226,7 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'T',
                 gene: 'HEAD_THICK_SKULL',
               },
+              name: 'base',
             },
             {
               column: 9,
@@ -215,12 +236,16 @@ const doubleHelixAst: ParsedDoubleHelix = {
                 base: 'C',
                 gene: 'NECK_STIFF',
               },
+              name: 'base',
             },
           ],
+          name: 'base-sequence',
         },
       },
+      name: 'helix',
     },
   ],
+  name: 'double-helix',
 };
 
 describe('Genome to string', () => {
@@ -228,6 +253,7 @@ describe('Genome to string', () => {
     const serialized = genomeString({
       index: 0,
       data: [doubleHelixAst],
+      name: 'root',
     });
     expect(serialized).toEqual(doubleHelix);
   });
