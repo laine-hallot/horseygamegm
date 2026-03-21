@@ -122,6 +122,12 @@ export const parseGenome = (genome: string): Result<ParsedGenome> => {
     if (line === undefined) {
       return { ok: false, error: { message: `Parser overran gnome length` } };
     }
+
+    if (line === '') {
+      // empty line ignore it
+      lineIndex = lineIndex + 1;
+      continue;
+    }
     const dataLineOne = parseLine(line, lineIndex, cursor);
     if (dataLineOne.ok) {
       const startLineOne = cursor;
