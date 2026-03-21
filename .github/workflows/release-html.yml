@@ -1,0 +1,54 @@
+name: Build and attach single-file HTML
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes in genome-mapper
+        id: diff
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            echo "No previous tag found, proceeding with build"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          elif git diff --quiet "$PREV_TAG" HEAD -- genome-mapper/; then
+            echo "No changes in genome-mapper since $PREV_TAG, skipping"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in genome-mapper since $PREV_TAG"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.diff.outputs.changed == 'true'
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+        if: steps.diff.outputs.changed == 'true'
+
+      - run: npm -w horsey-parser run build
+        if: steps.diff.outputs.changed == 'true'
+
+      - run: npx vite build --config vite.config.singlefile.ts
+        if: steps.diff.outputs.changed == 'true'
+        working-directory: genome-mapper
+
+      - name: Upload to release
+        if: steps.diff.outputs.changed == 'true'
+        run: gh release upload "${{ github.ref_name }}" genome-mapper/dist/index.html --clobber
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

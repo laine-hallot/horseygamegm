@@ -1,9 +1,13 @@
-import type { RouteObject } from 'react-router';
+import type { MemoryRouterOpts, RouteObject } from 'react-router';
 
 import type { tabs } from './tabs';
 
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import {
+  createBrowserRouter,
+  createMemoryRouter,
+  RouterProvider,
+} from 'react-router';
 
 import { CrisprTab } from './tab-content/crisper-planner/crisper-planner';
 import { GenesTab } from './tab-content/gene-lookup/gene-lookup';
@@ -13,35 +17,41 @@ import { TabsLayout } from './tab-layout';
 
 import styles from './App.module.css';
 
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      Component: TabsLayout,
-      children: [
-        {
-          index: true,
-          Component: MapTab,
-        },
-        {
-          path: 'genes',
-          Component: GenesTab,
-        },
-        {
-          path: 'crispr',
-          Component: CrisprTab,
-        },
-        {
-          path: 'analyzer',
-          Component: AnalyzerTab,
-        },
-      ] satisfies (Omit<RouteObject, 'path'> & {
-        path?: (typeof tabs)[number]['path'];
-      })[],
-    },
-  ],
-  { basename: import.meta.env.BASE_URL ?? '' },
-);
+const createRouter = (routes: RouteObject[], opts?: MemoryRouterOpts) => {
+  return import.meta.env.VITE_OUTPUT_TARGET === 'html-file'
+    ? createMemoryRouter(routes, opts)
+    : createBrowserRouter(routes, {
+        basename: import.meta.env.BASE_URL ?? '',
+        ...opts,
+      });
+};
+
+const router = createRouter([
+  {
+    path: '/',
+    Component: TabsLayout,
+    children: [
+      {
+        index: true,
+        Component: MapTab,
+      },
+      {
+        path: 'genes',
+        Component: GenesTab,
+      },
+      {
+        path: 'crispr',
+        Component: CrisprTab,
+      },
+      {
+        path: 'analyzer',
+        Component: AnalyzerTab,
+      },
+    ] satisfies (Omit<RouteObject, 'path'> & {
+      path?: (typeof tabs)[number]['path'];
+    })[],
+  },
+]);
 
 export const App: React.FC<{}> = () => (
   <>
