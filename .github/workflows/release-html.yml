@@ -43,7 +43,7 @@ jobs:
       - run: npm -w horsey-parser run build
         if: steps.diff.outputs.changed == 'true'
 
-      - run: npx vite build --config vite.config.singlefile.ts
+      - run: VITE_OUTPUT_TARGET=html-file npx vite build --config vite.config.singlefile.ts
         if: steps.diff.outputs.changed == 'true'
         working-directory: genome-mapper
 
