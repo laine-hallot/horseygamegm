@@ -2,7 +2,7 @@
 
 An interactive reference tool for the horse genetics system in _Horsey Game_. Runs entirely in your browser — no installation, no internet connection required after download.
 
-**[Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3677395605)** · **[Download Latest Release](https://github.com/hikazey/horseygamegm/releases/latest)**
+**[Steam Guide](https://steamcommunity.com/sharedfiles/filedetails/?id=3677395605)** · **[Download Latest Release](https://github.com/laine-hallot/horseygamegm/releases/latest)**
 
 ---
 
@@ -21,7 +21,11 @@ This tool makes that system navigable without memorizing anything.
 
 ## How to use
 
-1. Download `horsey-game-genome-mapper.html` from the [latest release](https://github.com/hikazey/horseygamegm/releases/latest)
+### Online
+1. Visit https://laine-hallot.github.io/horseygamegm/
+
+### Offline
+1. Download `horsey-game-genome-mapper.html` from the [latest release](https://github.com/laine-hallot/horseygamegm/releases/latest)
 2. Open it in any web browser (Chrome, Firefox, Edge, Safari all work)
 3. That's it — no server, no install, no internet needed
 
