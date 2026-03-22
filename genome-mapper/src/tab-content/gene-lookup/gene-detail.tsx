@@ -1,4 +1,8 @@
-import type { GeneLocation, GeneData } from '@laine-hallot/horsey-parser';
+import type {
+  GeneLocation,
+  GeneData,
+  GeneNames,
+} from '@laine-hallot/horsey-parser';
 
 import React from 'react';
 
@@ -10,7 +14,7 @@ import { valColor, catClass } from '../../utils.ts';
 import styles from './gene-detail.module.css';
 
 export const GeneDetail: React.FC<{
-  name: string;
+  name: GeneNames;
   gene: GeneData;
   location?: GeneLocation;
 }> = ({ name, gene, location }) => {
@@ -76,6 +80,19 @@ export const GeneDetail: React.FC<{
         </b>{' '}
         at Helix {location ? location.helixNumber : '?'}, Position{' '}
         {location ? location.position : '?'} on both strands.
+      </div>
+
+      <div className={styles.crisprInfo}>
+        In-game: go to{' '}
+        <b className={styles.editGuideAccent}>
+          Helix {location ? location.helixNumber : '?'}
+        </b>
+        , count to{' '}
+        <b className={styles.editGuideAccent}>
+          position {location ? location.position : '?'}
+        </b>{' '}
+        from the top (position 0 = top). The base there controls this gene. Same
+        position on both strands.
       </div>
     </div>
   );

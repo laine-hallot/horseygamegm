@@ -78,3 +78,24 @@
   margin-top: 10px;
   line-height: 1.7;
 }
+
+.crisprInfo {
+  padding: 10px 14px;
+  background: #0a1628;
+  border-radius: 4px;
+  border: 1px solid #1e3a5f;
+  margin-bottom: 14px;
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.8;
+}
+.editGuideTitle {
+  color: #7dd3fc;
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+.editGuideAccent {
+  color: var(--accent);
+}

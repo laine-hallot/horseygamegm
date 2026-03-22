@@ -5,10 +5,6 @@ export const tabs = [
     title: 'Gene Lookup',
   },
   {
-    path: 'crispr',
-    title: 'CRISPR Planner',
-  },
-  {
     path: 'analyzer',
     title: 'Genome Analyzer',
   },

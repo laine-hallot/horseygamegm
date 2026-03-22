@@ -9,13 +9,12 @@ import {
   RouterProvider,
 } from 'react-router';
 
-import { CrisprTab } from './tab-content/crisper-planner/crisper-planner';
+import { ToastDisplay } from './components/toast/toast-display';
 import { GenesTab } from './tab-content/gene-lookup/gene-lookup';
 import { AnalyzerTab } from './tab-content/genome-analyzer/genome-analyzer';
 import { MapTab } from './tab-content/helix-map/helix-map';
 import { TabsLayout } from './tab-layout';
 import { ToastContext } from './toast-context';
-import { ToastDisplay } from './components/toast/toast-display';
 import { toastStore } from './toast-store';
 
 import styles from './App.module.css';
@@ -41,10 +40,6 @@ const router = createRouter([
       {
         path: 'genes',
         Component: GenesTab,
-      },
-      {
-        path: 'crispr',
-        Component: CrisprTab,
       },
       {
         path: 'analyzer',
