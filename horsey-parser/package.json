@@ -1,6 +1,6 @@
 {
   "name": "@laine-hallot/horsey-parser",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "A parser for Horsey Game gnome data",
   "main": "dist/horsey-parser.js",
   "types": "./src/index.ts",
