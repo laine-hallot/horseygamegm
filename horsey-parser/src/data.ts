@@ -463,6 +463,12 @@ export const GENES = {
     alleleValues: [0, 30, 20, -25],
     category: 'Neck',
   },
+  NECK_SIZE: {
+    maxValue: 100,
+    scale: 1,
+    alleleValues: [0, 0, 0, 0],
+    category: 'Neck',
+  },
   NECK_JOINT_TYPE: {
     maxValue: 100,
     scale: 1,
@@ -1570,6 +1576,7 @@ export const HELIX_MAP: GeneNames[][] = [
     'NECK_THICKNESS',
     'NECK_ANGLE',
     'NECK_COCK',
+    'NECK_SIZE',
   ],
   [
     'TAIL_TAG',

@@ -16,11 +16,29 @@ export const parseBaseChain = (
   data: string,
   row: number,
   column: number,
-  cursor: number,
+  parentCursor: number,
 ): Result<ParsedBaseSequence> => {
   const rawChars = data.split('');
 
   const rowData: ParsedBase[] = [];
+
+  if (data.length > helixGenes.length) {
+    return {
+      ok: false,
+      error: {
+        message: `Line: ${row} base sequence is too long. Expected length ${helixGenes.length}, got length ${data.length}`,
+      },
+    };
+  }
+  if (data.length < helixGenes.length) {
+    return {
+      ok: false,
+      error: {
+        message: `Line: ${row} base sequence is too short. Expected length ${helixGenes.length}, got length ${data.length}`,
+      },
+    };
+  }
+
   for (const [index, gene] of helixGenes.entries()) {
     const char = rawChars[index];
     if (char === 'A' || char === 'T' || char === 'C' || char === 'G') {
@@ -28,13 +46,15 @@ export const parseBaseChain = (
         name: 'base',
         column: column + index,
         row,
-        index: cursor + index,
+        index: parentCursor + index,
         data: { base: char, gene },
       });
     } else {
       return {
         ok: false,
-        error: { message: `Unknown char "${char}" at ${row}:${index}` },
+        error: {
+          message: `Unknown char "${char}" at ${row}:${index} :: ${data}`,
+        },
       };
     }
   }
@@ -43,7 +63,7 @@ export const parseBaseChain = (
     data: rowData,
     column,
     row,
-    index: cursor,
+    index: parentCursor,
   });
 };
 
@@ -56,11 +76,11 @@ export const parseHelix = (
   helixId: number;
   textLength: number;
 }> => {
-  let textLength = 0;
+  let cursor = 0;
   if (/[0-9]{2}:/.test(line)) {
     const helixId = parseInt(line.slice(0, 3));
     if (!Number.isNaN(helixId)) {
-      textLength = textLength + 3; // consume helix label length
+      cursor = cursor + 3; // local cursor - consume helix label length
       const helixGenes = HELIX_MAP[helixId];
       if (helixGenes === undefined) {
         return {
@@ -75,10 +95,10 @@ export const parseHelix = (
         line.slice(3),
         lineIndex,
         3,
-        parentCursor + textLength,
+        parentCursor + cursor,
       );
       if (lineData.ok === true) {
-        textLength += lineData.value.data.length; // consume line data length
+        cursor += lineData.value.data.length; // local cursor - consume line data length
         const parsedHelix: ParsedHelix = {
           name: 'helix',
           column: 0,
@@ -92,7 +112,7 @@ export const parseHelix = (
         return Ok({
           lineData: parsedHelix,
           helixId,
-          textLength,
+          textLength: cursor,
         });
       } else {
         return lineData;
@@ -127,7 +147,7 @@ export const parseDoubleHelix = (
   if (!dataLineOne.ok) {
     return dataLineOne;
   }
-  cursor = cursor + dataLineOne.value.textLength + 1; // consume helix data length + 1 for \n
+  cursor = cursor + dataLineOne.value.textLength + 1; // local cursor - consume helix data length + 1 for \n
 
   if (lineTwo === undefined) {
     return {
@@ -142,7 +162,7 @@ export const parseDoubleHelix = (
   if (!dataLineTwo.ok) {
     return dataLineTwo;
   }
-  cursor = cursor + dataLineTwo.value.textLength + 1; // consume helix data length + 1 for \n
+  cursor = cursor + dataLineTwo.value.textLength; // local cursor - consume helix data length
   if (dataLineTwo.value.helixId !== dataLineOne.value.helixId) {
     return {
       ok: false,
@@ -177,6 +197,7 @@ export const parseGenome = (genome: string): Result<ParsedGenome> => {
     if (lineIndex === rawLines.length - 1 && line === '') {
       // last line is empty ignore it
       lineIndex = lineIndex + 1;
+      cursor = cursor + 1;
       continue;
     }
 
@@ -194,7 +215,7 @@ export const parseGenome = (genome: string): Result<ParsedGenome> => {
     if (!doubleHelix.ok) {
       return doubleHelix;
     }
-    cursor = cursor + doubleHelix.value.textLength;
+    cursor = cursor + doubleHelix.value.textLength + 1; // consume double helix length + 1 for \n at end of second line;
     helices.push(doubleHelix.value.doubleHelix);
   }
   return Ok({
