@@ -14,6 +14,9 @@ import { GenesTab } from './tab-content/gene-lookup/gene-lookup';
 import { AnalyzerTab } from './tab-content/genome-analyzer/genome-analyzer';
 import { MapTab } from './tab-content/helix-map/helix-map';
 import { TabsLayout } from './tab-layout';
+import { ToastContext } from './toast-context';
+import { ToastDisplay } from './components/toast/toast-display';
+import { toastStore } from './toast-store';
 
 import styles from './App.module.css';
 
@@ -54,7 +57,7 @@ const router = createRouter([
 ]);
 
 export const App: React.FC<{}> = () => (
-  <>
+  <div className={styles.appContent}>
     <div id="header">
       <div>
         <h1>EQUINE GENOME MAPPER</h1>
@@ -77,6 +80,9 @@ export const App: React.FC<{}> = () => (
         </span>
       </div>
     </div>
-    <RouterProvider router={router} />
-  </>
+    <ToastContext.Provider value={toastStore}>
+      <RouterProvider router={router} />
+      <ToastDisplay />
+    </ToastContext.Provider>
+  </div>
 );

@@ -204,7 +204,7 @@ nav .nav-link:hover:not(.active) {
 }
 
 /* LAYOUT */
-#app {
+#tab-content {
   padding: 14px;
   max-width: 1200px;
   margin: 0 auto;

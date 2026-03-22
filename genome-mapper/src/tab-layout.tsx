@@ -12,7 +12,7 @@ export const TabsLayout: React.FC<{}> = () => {
           </NavLink>
         ))}
       </nav>
-      <div id="app">
+      <div id="tab-content">
         <Outlet />
       </div>
     </div>

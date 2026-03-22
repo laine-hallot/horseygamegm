@@ -1,21 +1,39 @@
 import type { ParsedBase, ParsedGenome } from '@laine-hallot/horsey-parser';
 
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { HELIX_MAP } from '@laine-hallot/horsey-parser';
 
 import { useGenome } from '../../hooks/genome';
+import { ToastContext } from '../../toast-context';
 import { GenomeInput } from './genome-input';
 import { HelixResult } from './helix-result';
 
 import styles from './gnome-analyzer.module.css';
 
 export const AnalyzerTab: React.FC = () => {
+  const { queueToast } = useContext(ToastContext);
   const { text, setText, genome, analyzeGenome, handleClear, modifyGene } =
     useGenome();
 
+  const handleCopy = (event: KeyboardEvent) => {
+    console.log(event);
+    if (event.ctrlKey && event.key === 'c') {
+      navigator.clipboard.writeText(text);
+      queueToast('Copied gnome to clipboard');
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleCopy);
+
+    return () => {
+      window.removeEventListener('keydown', handleCopy);
+    };
+  }, []);
+
   return (
-    <div>
+    <div className={styles.genomeAnalyzer}>
       <GenomeInput
         text={text}
         onChange={setText}
@@ -43,7 +61,7 @@ const GenomeDisplay: React.FC<{
   ) => void;
 }> = ({ genome, modifyGene }) => {
   return (
-    <div>
+    <div style={{ overflow: 'scroll', flex: 1 }}>
       {HELIX_MAP.map((genes, genomeIndex) => {
         return (
           <HelixResult

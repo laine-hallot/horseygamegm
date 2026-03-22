@@ -1,2 +1,9 @@
 .genome-error {
 }
+
+.genome-analyzer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  max-height: 120vh;
+}

@@ -3,7 +3,19 @@
   font-size: 10px;
   letter-spacing: 0.15em;
 }
-.legendBaseA { color: var(--A); }
-.legendBaseT { color: var(--T); }
-.legendBaseC { color: var(--C); }
-.legendBaseG { color: var(--G); }
+.legendBaseA {
+  color: var(--A);
+}
+.legendBaseT {
+  color: var(--T);
+}
+.legendBaseC {
+  color: var(--C);
+}
+.legendBaseG {
+  color: var(--G);
+}
+
+.app-content {
+  position: relative;
+}

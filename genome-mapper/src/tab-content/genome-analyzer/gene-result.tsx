@@ -6,14 +6,12 @@ import type {
 
 import React from 'react';
 
-import { GENES, BASE_IDX } from '@laine-hallot/horsey-parser';
+import { GENES, BASE_IDX, BASES } from '@laine-hallot/horsey-parser';
 
 import { BaseChip } from '../../components/base-chip.tsx';
 import { valColor, catClass, catBorderClass } from '../../utils.ts';
 
 import styles from './gene-result.module.css';
-
-const baseOptions = ['A', 'T', 'G', 'C'];
 
 const GeneSelectChip: React.FC<{
   baseValue: ParsedBase;
@@ -41,7 +39,7 @@ const GeneSelectChip: React.FC<{
         defaultValue={baseValue.data.base}
         autoComplete="false"
       >
-        {baseOptions.map((base, index) => (
+        {BASES.map((base, index) => (
           <option key={base} value={base}>
             {base}: {gene.alleleValues[index] ?? '??'}
           </option>
