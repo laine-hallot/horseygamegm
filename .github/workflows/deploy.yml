@@ -31,7 +31,7 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             echo "No previous tag found, proceeding with build"
             echo "changed=true" >> $GITHUB_OUTPUT
-          elif git diff --quiet "$PREV_TAG" HEAD -- genome-mapper/; then
+          elif git diff --quiet "$PREV_TAG" HEAD -- packages/genome-mapper/; then
             echo "No changes in genome-mapper since $PREV_TAG, skipping"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
@@ -53,12 +53,12 @@ jobs:
 
       - run: npm run build
         if: steps.diff.outputs.changed == 'true'
-        working-directory: genome-mapper
+        working-directory: packages/genome-mapper
 
       - uses: actions/upload-pages-artifact@v3
         if: steps.diff.outputs.changed == 'true'
         with:
-          path: genome-mapper/dist
+          path: packages/genome-mapper/dist
 
   deploy:
     needs: build

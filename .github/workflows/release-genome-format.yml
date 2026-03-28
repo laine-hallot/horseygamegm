@@ -24,7 +24,7 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             echo "No previous tag found, proceeding with release"
             echo "changed=true" >> $GITHUB_OUTPUT
-          elif git diff --quiet "$PREV_TAG" HEAD -- genome-format/; then
+          elif git diff --quiet "$PREV_TAG" HEAD -- packages/genome-format/; then
             echo "No changes in genome-format since $PREV_TAG, skipping"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
@@ -45,20 +45,20 @@ jobs:
 
       - run: npm run build
         if: steps.diff.outputs.changed == 'true'
-        working-directory: genome-format
+        working-directory: packages/genome-format
 
       - run: node bin/to-schema.js
         if: steps.diff.outputs.changed == 'true'
-        working-directory: genome-format
+        working-directory: packages/genome-format
 
       - name: Upload schema to release
         if: steps.diff.outputs.changed == 'true'
-        run: gh release upload "${{ github.ref_name }}" genome-format/dist/horsey-genome.schema.json --clobber
+        run: gh release upload "${{ github.ref_name }}" packages/genome-format/dist/horsey-genome.schema.json --clobber
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: npm publish
         if: steps.diff.outputs.changed == 'true'
-        working-directory: genome-format
+        working-directory: packages/genome-format
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

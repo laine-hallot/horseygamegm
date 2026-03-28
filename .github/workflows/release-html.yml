@@ -23,7 +23,7 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             echo "No previous tag found, proceeding with build"
             echo "changed=true" >> $GITHUB_OUTPUT
-          elif git diff --quiet "$PREV_TAG" HEAD -- genome-mapper/; then
+          elif git diff --quiet "$PREV_TAG" HEAD -- packages/genome-mapper/; then
             echo "No changes in genome-mapper since $PREV_TAG, skipping"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
@@ -45,10 +45,10 @@ jobs:
 
       - run: VITE_OUTPUT_TARGET=html-file npx vite build --config vite.config.singlefile.ts
         if: steps.diff.outputs.changed == 'true'
-        working-directory: genome-mapper
+        working-directory: packages/genome-mapper
 
       - name: Upload to release
         if: steps.diff.outputs.changed == 'true'
-        run: gh release upload "${{ github.ref_name }}" genome-mapper/dist/index.html --clobber
+        run: gh release upload "${{ github.ref_name }}" packages/genome-mapper/dist/index.html --clobber
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

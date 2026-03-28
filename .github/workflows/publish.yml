@@ -24,7 +24,7 @@ jobs:
           if [ -z "$PREV_TAG" ]; then
             echo "No previous tag found, proceeding with publish"
             echo "changed=true" >> $GITHUB_OUTPUT
-          elif git diff --quiet "$PREV_TAG" HEAD -- horsey-parser/; then
+          elif git diff --quiet "$PREV_TAG" HEAD -- packages/horsey-parser/; then
             echo "No changes in horsey-parser since $PREV_TAG, skipping"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
@@ -45,10 +45,10 @@ jobs:
 
       - run: npm run build
         if: steps.diff.outputs.changed == 'true'
-        working-directory: horsey-parser
+        working-directory: packages/horsey-parser
 
       - run: npm publish
         if: steps.diff.outputs.changed == 'true'
-        working-directory: horsey-parser
+        working-directory: packages/horsey-parser
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
