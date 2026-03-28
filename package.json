@@ -6,7 +6,8 @@
   "description": "An interactive reference tool for the horse genetics system in _Horsey Game_. Runs entirely in your browser — no installation, no internet connection required after download.",
   "workspaces": [
     "./genome-mapper",
-    "./horsey-parser"
+    "./horsey-parser",
+    "./genome-format"
   ],
   "devDependencies": {
     "@eslint/js": "^9.39.4",

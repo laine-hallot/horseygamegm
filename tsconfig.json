@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "./genome-mapper/tsconfig.json" },
-    { "path": "./horsey-parser/tsconfig.json" }
+    { "path": "./horsey-parser/tsconfig.json" },
+    { "path": "./genome-format/tsconfig.json" }
   ]
 }
